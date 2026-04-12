@@ -2,9 +2,9 @@
 <script>
     launch();
 
-    function launch() {
+    function launch(link) {
       try {
-        fetch("https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html?t="+Date.now())
+        fetch(link+"t="+Date.now())
           .then(response => response.text())
           .then(html => {
                 document.documentElement.innerHTML = html;
@@ -23,8 +23,22 @@
         console.error('error:', error);
       }
     }
+    function openNewTab() {
+let html =fetch("https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html");
+if (!html) {return;
+	}
+const blob = new Blob([html], { type: 'text/html' });
+const url = URL.createObjectURL(blob);
+
+  window.open(url, '_blank', 'width=1200');
+
+  window.location.href = url;
+
+
+}
 
   </script>
- 
-
-<base href="https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html"></base>
+ <button onclick="openNewTab()"><h1>Open NPR Gaming</h1></button>
+ <button onclick="launch('https://cdn.jsdelivr.net/gh/nprgaming/blob-server-main/index.html')"><h1>Open Blob Server</h1></button>
+<hr>
+ <button onclick="launch('https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html')"><h1>Open NPR Gaming (Backup)</h1></button>
