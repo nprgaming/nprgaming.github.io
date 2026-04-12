@@ -1,1 +1,30 @@
-<h1><a href="gn-math-main">nothing here yet, only here</a></h1>
+<h1>LOADING... NO FILES ARE ACTUALLY HERE, AS IN ON THE HOMEPAGE, THEY ARE ALL EXTERNAL. SORRY FOR ANY DELAY!</h1>
+<script>
+    launch();
+
+    function launch() {
+      try {
+        fetch("https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html?t="+Date.now())
+          .then(response => response.text())
+          .then(html => {
+                document.documentElement.innerHTML = html;
+
+                document.documentElement.querySelectorAll('script').forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    if (oldScript.src) {
+                        newScript.src = oldScript.src;
+                    } else {
+                        newScript.textContent = oldScript.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+          });
+      } catch (error) {
+        console.error('error:', error);
+      }
+    }
+
+  </script>
+ 
+
+<base href="https://cdn.jsdelivr.net/gh/nprgaming/gn-math-main/autoupdate.html"></base>
